@@ -33,3 +33,10 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.getByName<Jar>("jar") {
+	enabled = false
+	manifest {
+		attributes["Main-Class"] = "com.andymcg.northumberlandbadmintonadmin.NorthumberlandBadmintonAdminApplication"
+	}
+}
