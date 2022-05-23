@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<!--/*thymesVar id="gender" type=java.util.List<andymcg7.northumberlandbadminton.player.Gender>"*/-->
+<!--/*thymesVar id="allClubs" type=java.util.List<andymcg7.northumberlandbadminton.club.ClubTransferObject>"*/-->
+<body>
+<div th:fragment="player-form" th:remove="tag">
+    <div class="row">
+        <label>Name</label>
+        <input th:type="text" th:field="*{name}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('name')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('teamName')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>
+            <input th:type="radio" th:field="*{gender}" th:value="MALE" class="filled-in">
+            <span>Male</span>
+        </label>
+        <label>
+            <input th:type="radio" th:field="*{gender}" th:value="FEMALE" class="filled-in">
+            <span>Female</span>
+        </label>
+        <ul th:if="${#fields.hasErrors('gender')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('gender')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Primary club</label>
+        <select th:field="*{primaryClub}">
+            <option th:each="club : ${allClubsWithNoClubOption}" th:value="${club.id}"}
+                    th:text="${club.name}" class="club"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('primaryClub')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('primaryClub')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Secondary club</label>
+        <select th:field="*{secondaryClub}">
+            <option th:each="club : ${allClubsWithNoClubOption}" th:value="${club.id}"}
+                    th:text="${club.name}" class="club"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('secondaryClub')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('secondaryClub')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Singles grade</label>
+        <select th:field="*{singlesGrade}">
+            <option th:each="grade : ${allGrades}" th:value="${grade}"}
+                    th:text="${grade}" class="grade"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('singlesGrade')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('singlesGrade')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Doubles grade</label>
+        <select th:field="*{doublesGrade}">
+            <option th:each="grade : ${allGrades}" th:value="${grade}"}
+                    th:text="${grade}" class="grade"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('doublesGrade')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('doublesGrade')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Mixed grade</label>
+        <select th:field="*{mixedGrade}">
+            <option th:each="grade : ${allGrades}" th:value="${grade}"}
+                    th:text="${grade}" class="grade"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('mixedGrade')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('mixedGrade')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Singles grade history</label>
+        <textarea th:field="*{singlesGradeHistory}" cols="60" rows="8"></textarea>
+        <ul th:if="${#fields.hasErrors('singlesGradeHistory')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('singlesGradeHistory')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Doubles grade history</label>
+        <textarea th:field="*{doublesGradeHistory}" cols="60" rows="8"></textarea>
+        <ul th:if="${#fields.hasErrors('doublesGradeHistory')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('doublesGradeHistory')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Mixed grade history</label>
+        <textarea th:field="*{mixedGradeHistory}" cols="60" rows="8"></textarea>
+        <ul th:if="${#fields.hasErrors('mixedGradeHistory')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('mixedGradeHistory')}" th:text="${err}"></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

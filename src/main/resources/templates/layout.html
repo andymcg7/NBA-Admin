@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Administration Interface for Northumberland Badminton Leagues">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Admin</title>
+    <link rel="shortcut icon" th:href="@{/resources/ico/favicon.ico}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link th:href="@{/resources/css/admin.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="admin-layout">
+    <div layout:fragment="main"></div>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script type="application/javascript">
+        $(document).ready(function() {
+            $('select').formSelect();
+            $('.collapsible').collapsible();
+            $('.collapsible.expandable').collapsible({
+                accordion: false
+            });
+            const dataTable = new simpleDatatables.DataTable("#mainTable", {
+                searchable: false,
+                fixedHeight: true
+            });
+        });
+    </script>
+</body>
+</html>

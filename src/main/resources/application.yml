@@ -1,2 +1,33 @@
 server:
   port: ${PORT:8080}
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+spring:
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: api-test
+  datasource:
+    driver: com.mysql.cj.jdbc.Driver

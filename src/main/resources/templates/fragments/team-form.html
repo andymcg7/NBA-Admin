@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<!--/*thymesVar id="matchTypes" type=java.util.List<andymcg7.northumberlandbadminton.team.MatchType>"*/-->
+<!--/*thymesVar id="allClubs" type=java.util.List<andymcg7.northumberlandbadminton.club.ClubTransferObject>"*/-->
+<body>
+<div th:fragment="team-form" th:remove="tag">
+    <div class="row">
+        <label>Team name</label>
+        <input th:type="text" th:field="*{teamName}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('teamName')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('teamName')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label th:each="matchType : ${matchTypes}">
+            <input th:type="radio" th:field="*{type}" th:value="${matchType.name}" class="filled-in">
+            <span th:text="${matchType.name}"></span>
+        </label>
+        <ul th:if="${#fields.hasErrors('type')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('type')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Division</label>
+        <input th:type="text" th:field="*{division}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('division')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('division')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Club</label>
+        <select th:field="*{club}">
+            <option th:each="club : ${allClubs}" th:value="${club.id}"}
+                    th:text="${club.name}" class="club"></option>
+        </select>
+        <ul th:if="${#fields.hasErrors('club')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('club')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Contact</label>
+        <input th:type="email" th:field="*{contact}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('contact')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('contact')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <label>Abbreviation</label>
+        <input th:type="text" maxlength="6" th:field="*{abbreviation}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('abbreviation')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('abbreviation')}" th:text="${err}"></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

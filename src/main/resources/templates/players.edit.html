@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<!--/*@thymesVar id="form" type="andymcg7.northumberlandbadminton.player.PlayerForm"*/-->
+<!--/*@thymesVar id="resource" type="andymcg7.northumberlandbadminton.player.Player"*/-->
+<head>
+    <title>Edit player</title>
+</head>
+<body class="has-fixed-sidenav">
+<div layout:fragment="main">
+    <header th:replace="fragments/header :: header('player')"></header>
+    <main class="container">
+        <div class="masonry row">
+            <div class="col s12">
+                <h2 class="title">Edit player</h2>
+                <form th:action="${(#mvc.url('PC#handleEdit').arg(0, resource.id).build())}" th:method="post" th:object="${form}" class="player">
+                    <div>
+                        <input th:type="hidden" th:field="*{id}">
+                    </div>
+                    <div th:replace="fragments/player-form :: player-form"></div>
+                    <div th:replace="fragments/submit-button :: submit-button"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

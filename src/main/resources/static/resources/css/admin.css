@@ -1,0 +1,73 @@
+table th[scope='row'] {
+    vertical-align: top;
+}
+
+table td.collection {
+    border: none;
+}
+
+.collapsible.expandable .items .collapsible-header .heading,
+.collapsible.expandable .item-products .collapsible-header .heading {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.collapsible.expandable .items .collapsible-header .expand-button,
+.collapsible.expandable .item-products .collapsible-header .expand-button {
+    display: inline-block;
+}
+
+.collapsible.expandable .items .active  .collapsible-header .expand-button,
+.collapsible.expandable .item-products.active .collapsible-header .expand-button {
+    display: none;
+}
+
+.collapsible.expandable .items .collapsible-header .collapse-button,
+.collapsible.expandable .item-products .collapsible-header .collapse-button {
+    display: none;
+}
+
+.collapsible.expandable .items.active .collapsible-header .collapse-button,
+.collapsible.expandable .item-products.active .collapsible-header .collapse-button {
+    display: inline-block;
+}
+
+.collapsible.expandable .items .collapsible-header .heading {
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.collapsible.expandable .items .products .collapsible-header .expand-button {
+    display: inline-block;
+}
+
+.collapsible.expandable .items .products.active .collapsible-header .expand-button {
+    display: none;
+}
+
+.collapsible.expandable .items .products .collapsible-header .collapse-button {
+    display: none;
+}
+
+.collapsible.expandable .items .products.active .collapsible-header .collapse-button {
+    display: inline-block;
+}
+
+@media(min-width: 75px) {
+    .has-fixed-sidenav {
+        padding-left: 0px;
+    }
+}
+
+.delete-button {
+    background: none;
+    border: 0;
+}
+
+.nba-blue {
+    background-color: rgb(40,53,147);
+}
+
+nav ul li.active {
+    background-color: #ee6e73;
+}

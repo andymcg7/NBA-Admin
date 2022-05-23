@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<!--/*thymesVar id="resources" type=java.util.List<andymcg7.northumberlandbadminton.player.Player>"*/-->
+<head>
+    <title>Player</title>
+</head>
+<body>
+<div layout:fragment="main">
+    <header th:replace="fragments/header :: header('players')">
+    </header>
+    <main class="container">
+        <div class="masonry row">
+            <div class="col s12">
+                <h2>Players</h2>
+                <div th:if="${resources.empty}">
+                    <p>There are no players currently configured</p>
+                </div>
+                <div th:unless="${resources.empty}">
+                    <table class="highlight" id="mainTable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Primary Club</th>
+                            <th>Secondary Club</th>
+                            <th>Singles</th>
+                            <th>Doubles</th>
+                            <th>Mixed</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="player : ${resources}" class="player resource" th:id="${player.id}">
+                            <td th:text="${player.name}"></td>
+                            <td th:text="${player.gender}"></td>
+                            <td th:text="${player.primaryClub?.name ?: 'No club'}"></td>
+                            <td th:text="${player.secondaryClub?.name} ?: 'No club'"></td>
+                            <td th:text="${player.singlesGrade}"></td>
+                            <td th:text="${player.doublesGrade}"></td>
+                            <td th:text="${player.mixedGrade}"></td>
+                            <td>
+                                <a th:href="${#mvc.url('PC#displayEdit').arg(0, player.id).build()}" class="edit-button">
+                                    <i class="material-icons green-text">edit</i>
+                                </a>
+                            </td>
+                            <td>
+                                <form th:action="${#mvc.url('PC#handleDelete').arg(0, player.id).build()}" method="post">
+                                    <button type="submit" name="action" class="delete-button">
+                                        <i class="material-icons red-text">delete</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <a th:href="${#mvc.url('PC#displayCreate').build()}"
+                       class="btn-floating btn-large waves-effect waves-light green create-button">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

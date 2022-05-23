@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<!--/*@thymesVar id="form" type="andymcg7.northumberlandbadminton.club.ClubForm"*/-->
+<!--/*@thymesVar id="resource" type="andymcg7.northumberlandbadminton.club.Club"*/-->
+<head>
+    <title>Edit club</title>
+</head>
+<body class="has-fixed-sidenav">
+<div layout:fragment="main">
+    <header th:replace="fragments/header :: header('clubs')"></header>
+    <main class="container">
+        <div class="masonry row">
+            <div class="col s12">
+                <h2 class="title">Edit club</h2>
+                <form th:action="${(#mvc.url('CC#handleEdit').arg(0, resource.id).build())}" th:method="post" th:object="${form}" class="club">
+                    <div>
+                        <input th:type="hidden" th:field="*{id}">
+                    </div>
+                    <div th:replace="fragments/club-form :: club-form"></div>
+                    <div th:replace="fragments/submit-button :: submit-button"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

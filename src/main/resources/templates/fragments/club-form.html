@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<body>
+<div th:fragment="club-form" th:remove="tag">
+    <div class="row">
+        <label>Club name</label>
+        <input th:type="text" th:field="*{name}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('name')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+        </ul>
+    </div>
+    <div class="row">
+        <label>Venue</label>
+        <input th:type="text" th:field="*{venue}" th:errorClass="error">
+        <ul th:if="${#fields.hasErrors('venue')}" class="field-errors">
+            <li th:each="err : ${#fields.errors('venue')}" th:text="${err}"></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
