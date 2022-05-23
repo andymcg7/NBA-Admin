@@ -9,7 +9,7 @@ table td.collection {
 .collapsible.expandable .items .collapsible-header .heading,
 .collapsible.expandable .item-products .collapsible-header .heading {
     display: inline-block;
-    margin-left: 1rem;
+    margin-left: 2rem; 
 }
 
 .collapsible.expandable .items .collapsible-header .expand-button,
