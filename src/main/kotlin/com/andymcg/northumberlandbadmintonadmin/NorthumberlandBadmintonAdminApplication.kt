@@ -16,11 +16,12 @@ class NorthumberlandBadmintonAdminApplication {
 	companion object {
 		@JvmStatic fun main(args: Array<String>) {
 			SpringApplication.run(NorthumberlandBadmintonAdminApplication::class.java, *args)
-			val fixie = URL(System.getenv("FIXIE_SOCKS_HOST"))
-			val fixieUserInfo: List<String> = fixie.userInfo.split(':')
+			val fixie = System.getenv("FIXIE_SOCKS_HOST")
+			val parts = fixie.split("@")
+			val fixieUserInfo: List<String> = parts[0].split(':')
 			val fixieUser = fixieUserInfo[0]
 			val fixiePassword = fixieUserInfo[1]
-			System.setProperty("socksProxyHost", fixie.host)
+			System.setProperty("socksProxyHost", parts[1])
 			Authenticator.setDefault(ProxyAuthenticator(fixieUser, fixiePassword))
 		}
 	}
