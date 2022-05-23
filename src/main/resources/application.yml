@@ -10,7 +10,7 @@ management:
       enabled: true
 spring:
   flyway:
-    enabled: true
+    enabled: false
     baseline-on-migrate: true
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
