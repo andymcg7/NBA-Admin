@@ -41,8 +41,8 @@ class NorthumberlandBadmintonAdminApplication {
 			val fixieProxy = parts[1].split(":")
 			System.setProperty("socksProxyHost", fixieProxy[0])
 			System.setProperty("socksProxyPort", fixieProxy[1])
-			logger.info("fixieProxy: $fixieProxy[0]")
-			logger.info("fixiePport: $fixieProxy[1]")
+			logger.info("fixieProxy: ${fixieProxy.get(0)}")
+			logger.info("fixiePport: ${fixieProxy.get(1)}")
 			Authenticator.setDefault(ProxyAuthenticator(fixieUser, fixiePassword))
 		}
 	}
