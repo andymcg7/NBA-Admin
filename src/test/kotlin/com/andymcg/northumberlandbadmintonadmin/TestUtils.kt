@@ -4,6 +4,7 @@ import com.andymcg.northumberlandbadmintonadmin.client.*
 import com.thedeanda.lorem.Lorem
 import com.thedeanda.lorem.LoremIpsum
 import org.apache.commons.lang3.RandomStringUtils
+import java.math.BigDecimal
 import java.security.SecureRandom
 import kotlin.random.Random
 
@@ -17,6 +18,11 @@ object TestUtils {
 
     fun randomLong(from: Long, to: Long) =
         if (from == to) to else Random.nextLong(from, to)
+
+    fun randomDouble(from: Double, to: Double): Double = Random.nextDouble(from, to)
+
+    fun randomBigDecimal(from: Double, to: Double): BigDecimal =
+        if (from == to) from.toBigDecimal() else randomDouble(from, to).toBigDecimal().scaled()
 
     fun randomEmail(): String = lorem.email
 
@@ -48,6 +54,12 @@ object TestUtils {
             singlesGradeHistory = lorem.getWords(50),
             doublesGradeHistory = lorem.getWords(50),
             mixedGradeHistory = lorem.getWords(50),
+            singlesAverage = randomBigDecimal(0.00, 1024.00),
+            singlesDemotionAverage = randomBigDecimal(0.00, 1024.00),
+            doublesAverage = randomBigDecimal(0.00, 1024.00),
+            doublesDemotionAverage = randomBigDecimal(0.00, 1024.00),
+            mixedAverage = randomBigDecimal(0.00, 1024.00),
+            mixedDemotionAverage = randomBigDecimal(0.00, 1024.00),
             id = randomLong(1, 9999)
         )
 

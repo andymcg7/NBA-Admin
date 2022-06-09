@@ -39,11 +39,11 @@ open class AbstractJpaRestServiceStub<RES, R : AbstractRestServiceStubService<RE
     fun insert(@RequestBody resource: RES, uri: UriComponentsBuilder): HttpEntity<RES> =
         doSave(resource, uri)
 
-    @PutMapping
+    @PutMapping("/{id}")
     fun update(@RequestBody resource: RES, uri: UriComponentsBuilder): HttpEntity<RES> =
         doSave(resource, uri)
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable("id") id: Long): HttpEntity<Void> = doDeleteById(id)
 
     private fun doFindAll(): HttpEntity<List<RES>> = ResponseEntity.ok(repository.findAll())

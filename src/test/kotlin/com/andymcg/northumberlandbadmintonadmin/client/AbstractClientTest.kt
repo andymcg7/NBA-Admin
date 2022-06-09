@@ -68,7 +68,7 @@ abstract class AbstractClientTest<RES, CLIENT : AbstractClient<RES>>(
     @Test
     fun `the client should delete a saved resource`() {
         // given
-        val randomResource = randomResource()
+        val randomResource = getStubService().save(randomResource())
 
         // when
         getClient().delete(idExtractor(randomResource)!!)

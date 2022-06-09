@@ -1,5 +1,6 @@
 package com.andymcg.northumberlandbadmintonadmin.client
 
+import com.andymcg.northumberlandbadmintonadmin.scaled
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.*
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
+import javax.annotation.PostConstruct
 
 enum class Gender() {
     MALE,
@@ -76,32 +78,32 @@ class PlayerSerializer : JsonSerializer<PlayerResource>() {
                 if (it.secondaryClub != null) {
                     generator.writeNumberField("secondary_club_id", it.secondaryClub.id!!)
                 }
-                generator.writeStringField("singlesGrade", it.singlesGrade.name)
-                generator.writeNumberField("singlesMatchesPlayed", it.singlesMatchesPlayed)
-                generator.writeNumberField("singlesCountingMatches", it.singlesCountingMatches)
-                generator.writeNumberField("singlesAverage", it.singlesAverage)
-                generator.writeNumberField("singlesTotalPoints", it.singlesTotalPoints)
-                generator.writeNumberField("singlesBestPoints", it.singlesBestPoints)
-                generator.writeNumberField("singlesDemotionAverage", it.singlesDemotionAverage)
-                generator.writeStringField("singlesGradeHistory", it.singlesGradeHistory)
+                generator.writeStringField("singles_grade", it.singlesGrade.name)
+                generator.writeNumberField("singles_matches_played", it.singlesMatchesPlayed)
+                generator.writeNumberField("singles_counting_matches", it.singlesCountingMatches)
+                generator.writeNumberField("singles_average", it.singlesAverage)
+                generator.writeNumberField("singles_total_points", it.singlesTotalPoints)
+                generator.writeNumberField("singles_best_points", it.singlesBestPoints)
+                generator.writeNumberField("singles_demotion_average", it.singlesDemotionAverage)
+                generator.writeStringField("singles_grade_history", it.singlesGradeHistory)
 
-                generator.writeStringField("doublesGrade", it.doublesGrade.name)
-                generator.writeNumberField("doublesMatchesPlayed", it.doublesMatchesPlayed)
-                generator.writeNumberField("doublesCountingMatches", it.doublesCountingMatches)
-                generator.writeNumberField("doublesAverage", it.doublesAverage)
-                generator.writeNumberField("doublesTotalPoints", it.doublesTotalPoints)
-                generator.writeNumberField("doublesBestPoints", it.doublesBestPoints)
-                generator.writeNumberField("doublesDemotionAverage", it.doublesDemotionAverage)
-                generator.writeStringField("doublesGradeHistory", it.doublesGradeHistory)
+                generator.writeStringField("doubles_grade", it.doublesGrade.name)
+                generator.writeNumberField("doubles_matches_played", it.doublesMatchesPlayed)
+                generator.writeNumberField("doubles_counting_matches", it.doublesCountingMatches)
+                generator.writeNumberField("doubles_average", it.doublesAverage)
+                generator.writeNumberField("doubles_total_points", it.doublesTotalPoints)
+                generator.writeNumberField("doubles_best_points", it.doublesBestPoints)
+                generator.writeNumberField("doubles_demotion_average", it.doublesDemotionAverage)
+                generator.writeStringField("doubles_grade_history", it.doublesGradeHistory)
 
-                generator.writeStringField("mixedGrade", it.mixedGrade.name)
-                generator.writeNumberField("mixedMatchesPlayed", it.mixedMatchesPlayed)
-                generator.writeNumberField("mixedCountingMatches", it.mixedCountingMatches)
-                generator.writeNumberField("mixedAverage", it.mixedAverage)
-                generator.writeNumberField("mixedTotalPoints", it.mixedTotalPoints)
-                generator.writeNumberField("mixedBestPoints", it.mixedBestPoints)
-                generator.writeNumberField("mixedDemotionAverage", it.mixedDemotionAverage)
-                generator.writeStringField("mixedGradeHistory", it.mixedGradeHistory)
+                generator.writeStringField("mixed_grade", it.mixedGrade.name)
+                generator.writeNumberField("mixed_matches_played", it.mixedMatchesPlayed)
+                generator.writeNumberField("mixed_counting_matches", it.mixedCountingMatches)
+                generator.writeNumberField("mixed_average", it.mixedAverage)
+                generator.writeNumberField("mixed_total_points", it.mixedTotalPoints)
+                generator.writeNumberField("mixed_best_points", it.mixedBestPoints)
+                generator.writeNumberField("mixed_demotion_average", it.mixedDemotionAverage)
+                generator.writeStringField("mixed_grade_history", it.mixedGradeHistory)
 
                 generator.writeEndObject()
             } ?: generator.writeNull()
@@ -112,8 +114,9 @@ class PlayerSerializer : JsonSerializer<PlayerResource>() {
 @Component
 class PlayerDeserializer(private val clubClient: ClubClient) : JsonDeserializer<PlayerResource>() {
 
-    // prefetch all the clubs for performance
-    val clubs = clubClient.findAll()
+    private val clubs: List<ClubResource> by lazy {
+        clubClient.findAll()
+    }
 
     private fun getClub(id: Long): ClubResource? =
         if (id != 0L) clubs.firstOrNull { it.id == id } else null
@@ -137,26 +140,26 @@ class PlayerDeserializer(private val clubClient: ClubClient) : JsonDeserializer<
             singlesGrade = Grades.valueOf(node.get("singles_grade").asText()),
             singlesMatchesPlayed = node.get("singles_matches_played").asInt(),
             singlesCountingMatches = node.get("singles_counting_matches").asInt(),
-            singlesAverage = node.get("singles_average").asDouble().toBigDecimal(),
+            singlesAverage = node.get("singles_average").asDouble().toBigDecimal().scaled(),
             singlesTotalPoints = node.get("singles_total_points").asInt(),
             singlesBestPoints = node.get("singles_best_points").asInt(),
-            singlesDemotionAverage = node.get("singles_demotion_average").asDouble().toBigDecimal(),
+            singlesDemotionAverage = node.get("singles_demotion_average").asDouble().toBigDecimal().scaled(),
             singlesGradeHistory = node.get("singles_grade_history").asText(),
             doublesGrade = Grades.valueOf(node.get("doubles_grade").asText()),
             doublesMatchesPlayed = node.get("doubles_matches_played").asInt(),
             doublesCountingMatches = node.get("doubles_counting_matches").asInt(),
-            doublesAverage = node.get("doubles_average").asDouble().toBigDecimal(),
+            doublesAverage = node.get("doubles_average").asDouble().toBigDecimal().scaled(),
             doublesTotalPoints = node.get("doubles_total_points").asInt(),
             doublesBestPoints = node.get("doubles_best_points").asInt(),
-            doublesDemotionAverage = node.get("doubles_demotion_average").asDouble().toBigDecimal(),
+            doublesDemotionAverage = node.get("doubles_demotion_average").asDouble().toBigDecimal().scaled(),
             doublesGradeHistory = node.get("doubles_grade_history").asText(),
             mixedGrade = Grades.valueOf(node.get("mixed_grade").asText()),
             mixedMatchesPlayed = node.get("mixed_matches_played").asInt(),
             mixedCountingMatches = node.get("mixed_counting_matches").asInt(),
-            mixedAverage = node.get("mixed_average").asDouble().toBigDecimal(),
+            mixedAverage = node.get("mixed_average").asDouble().toBigDecimal().scaled(),
             mixedTotalPoints = node.get("mixed_total_points").asInt(),
             mixedBestPoints = node.get("mixed_best_points").asInt(),
-            mixedDemotionAverage = node.get("mixed_demotion_average").asDouble().toBigDecimal(),
+            mixedDemotionAverage = node.get("mixed_demotion_average").asDouble().toBigDecimal().scaled(),
             mixedGradeHistory = node.get("mixed_grade_history").asText())
     }
 

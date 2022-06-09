@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc
 
 
 @Rollback
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("api-spec")
 class AbstractApiTest {
 
