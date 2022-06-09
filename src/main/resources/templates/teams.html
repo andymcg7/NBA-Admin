@@ -38,12 +38,12 @@
                            <td th:text="${team.club.name}"></td>
                            <td th:text="${team.abbreviation}"></td>
                            <td>
-                               <a th:href="${#mvc.url('TC#displayEdit').arg(0, team.id).build()}" class="edit-button">
+                               <a th:href="${#mvc.url('TAC#displayEdit').arg(0, team.id).build()}" class="edit-button">
                                    <i class="material-icons green-text">edit</i>
                                </a>
                            </td>
                            <td>
-                               <form th:action="${#mvc.url('TC#handleDelete').arg(0, team.id).build()}" method="post">
+                               <form th:action="${#mvc.url('TAC#handleDelete').arg(0, team.id).build()}" method="post">
                                    <button type="submit" name="action" class="delete-button">
                                     <i class="material-icons red-text">delete</i>
                                    </button>
@@ -54,7 +54,7 @@
                    </table>
                </div>
                <div>
-                   <a th:href="${#mvc.url('TC#displayCreate').build()}"
+                   <a th:href="${#mvc.url('TAC#displayCreate').build()}"
                       class="btn-floating btn-large waves-effect waves-light green create-button">
                        <i class="material-icons">add</i>
                    </a>

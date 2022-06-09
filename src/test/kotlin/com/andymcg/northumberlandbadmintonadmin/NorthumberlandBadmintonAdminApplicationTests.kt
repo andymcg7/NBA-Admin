@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-@Disabled
-class NorthumberlandBadmintonAdminApplicationTests : AbstractFunctionalSpec() {
+class NorthumberlandBadmintonAdminApplicationTests : AbstractApiTest() {
 
 	@Test
 	fun contextLoads() {

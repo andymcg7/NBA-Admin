@@ -42,12 +42,12 @@
                             <td th:text="${player.doublesGrade}"></td>
                             <td th:text="${player.mixedGrade}"></td>
                             <td>
-                                <a th:href="${#mvc.url('PC#displayEdit').arg(0, player.id).build()}" class="edit-button">
+                                <a th:href="${#mvc.url('PAC#displayEdit').arg(0, player.id).build()}" class="edit-button">
                                     <i class="material-icons green-text">edit</i>
                                 </a>
                             </td>
                             <td>
-                                <form th:action="${#mvc.url('PC#handleDelete').arg(0, player.id).build()}" method="post">
+                                <form th:action="${#mvc.url('PAC#handleDelete').arg(0, player.id).build()}" method="post">
                                     <button type="submit" name="action" class="delete-button">
                                         <i class="material-icons red-text">delete</i>
                                     </button>
@@ -58,7 +58,7 @@
                     </table>
                 </div>
                 <div>
-                    <a th:href="${#mvc.url('PC#displayCreate').build()}"
+                    <a th:href="${#mvc.url('PAC#displayCreate').build()}"
                        class="btn-floating btn-large waves-effect waves-light green create-button">
                         <i class="material-icons">add</i>
                     </a>

@@ -1,9 +1,7 @@
 package com.andymcg.northumberlandbadmintonadmin.page
 
-import com.andymcg.northumberlandbadmintonadmin.AbstractJpaEntity
-
 abstract class AbstractResourceListPage<
-        RES : AbstractJpaEntity,
+        RES,
         LIST : AbstractResourceListPage<RES, LIST, CREATE, EDIT>,
         CREATE : AbstractResourceCreatePage<RES, LIST, CREATE, EDIT>,
         EDIT : AbstractResourceEditPage<RES, LIST, CREATE, EDIT>>(

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout.html}">
-<!--/*thymesVar id="resources" type=java.util.List<andymcg7.northumberlandbadminton.club.Club>"*/-->
+<!--/*thymesVar id="resources" type=java.util.List<com.andymcg.northumberlandbadmintonadmin.client.ClubResource>"*/-->
 <head>
     <title>Clubs</title>
 </head>
@@ -32,12 +33,12 @@
                            <td th:text="${club.name}"></td>
                            <td th:text="${club.venue}"></td>
                            <td>
-                               <a th:href="${#mvc.url('CC#displayEdit').arg(0, club.id).build()}" class="edit-button">
+                               <a th:href="${#mvc.url('CAC#displayEdit').arg(0, club.id).build()}" class="edit-button">
                                    <i class="material-icons green-text">edit</i>
                                </a>
                            </td>
                            <td>
-                               <form th:action="${#mvc.url('CC#handleDelete').arg(0, club.id).build()}" method="post">
+                               <form th:action="${#mvc.url('CAC#handleDelete').arg(0, club.id).build()}" method="post">
                                    <button type="submit" name="action" class="delete-button">
                                     <i class="material-icons red-text">delete</i>
                                    </button>
@@ -48,7 +49,7 @@
                    </table>
                </div>
                <div>
-                   <a th:href="${#mvc.url('CC#displayCreate').build()}"
+                   <a th:href="${#mvc.url('CAC#displayCreate').build()}"
                       class="btn-floating btn-large waves-effect waves-light green create-button">
                        <i class="material-icons">add</i>
                    </a>

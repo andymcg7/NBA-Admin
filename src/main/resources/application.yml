@@ -1,5 +1,8 @@
 server:
   port: ${PORT:8080}
+  servlet:
+    session:
+      timeout: 60000
 management:
   endpoints:
     enabled-by-default: false
@@ -9,25 +12,85 @@ management:
     info:
       enabled: true
 spring:
-  flyway:
-    enabled: false
-    baseline-on-migrate: true
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-  jpa:
-    database: mysql
-    show-sql: true
-    open-in-view: true
-    properties:
-      hibernate:
-        globally_quoted_identifiers: true
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  thymeleaf:
+    render-hidden-markers-before-checkboxes: true
+nba:
+  service-url: http://www.northumberlandbadminton.org/nba-service/
 
 ---
 
 spring:
   config:
     activate:
-      on-profile: api-test
-  datasource:
-    driver: com.mysql.cj.jdbc.Driver
+      on-profile: local
+  security:
+    user:
+      name: user
+      password: password
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, info, beans, conditions, configprops, env, loggers, metrics, mappings, sessions
+nba:
+  service-url: http://localhost:8080/stubs/nba-service
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: nba_site
+  security:
+    user:
+      name: user
+      password: password
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, info, beans, conditions, configprops, env, loggers, metrics, mappings, sessions
+nba:
+  service-url: http://www.northumberlandbadminton.org/nba-service/
+---
+
+spring:
+  config:
+    activate:
+      on-profile: api-spec
+  security:
+    user:
+      name: user
+      password: password
+server:
+  port: 36543
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: info
+nba:
+  service-url: http://localhost:36543/stubs/nba-service
+---
+
+spring:
+  config:
+    activate:
+      on-profile: functional-spec
+  security:
+    user:
+      name: user
+      password: password
+server:
+  port: 36543
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: info
+nba:
+  service-url: http://localhost:36543/stubs/nba-service

@@ -14,8 +14,6 @@ import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
 
 private const val FLUENT_CAPABILITIES =
     """
@@ -39,30 +37,18 @@ private const val FLUENT_CAPABILITIES =
     screenshotMode = ConfigurationProperties.TriggerMode.AUTOMATIC_ON_FAIL,
     screenshotPath = "build/reports/tests/test/screenshots"
 )
-@AutoConfigureTestEntityManager
-@Testcontainers
 @DirtiesContext
 abstract class AbstractFunctionalSpec : FluentTest() {
-
-    companion object {
-        @Container
-        private val mysqlContainer = KotlinMySQLContainer(image = "mysql:8.0.22")
-            .withDatabaseName("nba")
-            .withUrlParam("sessionVariables", "sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false")
-
-        @JvmStatic
-        @DynamicPropertySource
-        fun properties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.datasource.url", mysqlContainer::getJdbcUrl)
-            registry.add("spring.datasource.password", mysqlContainer::getPassword)
-            registry.add("spring.datasource.username", mysqlContainer::getUsername)
-            registry.add("spring.jpa.hibernate.ddl-auto") { "create-drop" }
-        }
-    }
 
 //    @Page lateinit var dashboard: DashboadPage
 
     @Value("\${server.port}") lateinit var port: String
+
+    @Value("\${spring.security.user.name}") private lateinit var username: String
+
+    @Value("\${spring.security.user.password}") private lateinit var password: String
+
+
 
     @Autowired lateinit var ctx: GenericApplicationContext
 

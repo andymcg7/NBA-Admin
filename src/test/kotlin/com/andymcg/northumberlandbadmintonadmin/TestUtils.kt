@@ -1,15 +1,11 @@
 package com.andymcg.northumberlandbadmintonadmin
 
-import com.andymcg.northumberlandbadmintonadmin.club.Club
-import com.andymcg.northumberlandbadmintonadmin.player.Gender
-import com.andymcg.northumberlandbadmintonadmin.player.Grades
-import com.andymcg.northumberlandbadmintonadmin.player.Player
-import com.andymcg.northumberlandbadmintonadmin.team.MatchType
-import com.andymcg.northumberlandbadmintonadmin.team.Team
+import com.andymcg.northumberlandbadmintonadmin.client.*
 import com.thedeanda.lorem.Lorem
 import com.thedeanda.lorem.LoremIpsum
-import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils
+import org.apache.commons.lang3.RandomStringUtils
 import java.security.SecureRandom
+import kotlin.random.Random
 
 object TestUtils {
     val lorem: Lorem = LoremIpsum.getInstance()
@@ -17,22 +13,31 @@ object TestUtils {
 
     fun randomAlphabetic(length: Int): String = RandomStringUtils.randomAlphabetic(length)
 
+    fun randomLong(): Long = Random.nextLong()
+
+    fun randomLong(from: Long, to: Long) =
+        if (from == to) to else Random.nextLong(from, to)
+
     fun randomEmail(): String = lorem.email
 
-    fun generateRandomClub(): Club =
-            Club(name = randomAlphabetic(20), venue = lorem.getWords(10))
+    fun generateRandomClubResource(): ClubResource =
+        ClubResource(
+            name = randomAlphabetic(20),
+            venue = lorem.getWords(10),
+            id = randomLong(1, 9999))
 
-    fun generateRandomTeam(club: Club = generateRandomClub()): Team =
-        Team(
+    fun generateRandomTeamResource(club: ClubResource = generateRandomClubResource()): TeamResource =
+        TeamResource(
             teamName = randomAlphabetic(20),
             division = lorem.getWords(1),
             club = club,
             contact = randomEmail(),
             abbreviation = randomAlphabetic(6),
-            type = randomEnum(MatchType::class.java))
+            type = randomEnum(MatchType::class.java),
+            id = randomLong(1, 9999))
 
-    fun generateRandomPlayer(mainClub: Club? = null, secondClub: Club? = null) =
-        Player(
+    fun generateRandomPlayerResource(mainClub: ClubResource? = null, secondClub: ClubResource? = null):PlayerResource =
+        PlayerResource(
             name = "${lorem.lastName},${lorem.firstName}",
             primaryClub = mainClub,
             secondaryClub = secondClub,
@@ -42,7 +47,8 @@ object TestUtils {
             mixedGrade = randomEnum(Grades::class.java),
             singlesGradeHistory = lorem.getWords(50),
             doublesGradeHistory = lorem.getWords(50),
-            mixedGradeHistory = lorem.getWords(50)
+            mixedGradeHistory = lorem.getWords(50),
+            id = randomLong(1, 9999)
         )
 
     fun <T : Enum<*>?> randomEnum(clazz: Class<T>): T {

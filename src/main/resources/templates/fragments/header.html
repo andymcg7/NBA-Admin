@@ -5,9 +5,9 @@
     <nav class="nba-blue">
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li th:classappend="${active == 'clubs'} ? 'active' : ''"><a th:href="${#mvc.url('CC#displayList').build()}">Clubs</a></li>
-                <li th:classappend="${active == 'teams'} ? 'active' : ''"><a th:href="${#mvc.url('TC#displayList').build()}">Teams</a></li>
-                <li th:classappend="${active == 'players'} ? 'active' : ''"><a th:href="${#mvc.url('PC#displayList').build()}">Players</a></li>
+                <li th:classappend="${active == 'clubs'} ? 'active' : ''"><a th:href="${#mvc.url('CAC#displayList').build()}">Clubs</a></li>
+                <li th:classappend="${active == 'teams'} ? 'active' : ''"><a th:href="${#mvc.url('TAC#displayList').build()}">Teams</a></li>
+                <li th:classappend="${active == 'players'} ? 'active' : ''"><a th:href="${#mvc.url('PAC#displayList').build()}">Players</a></li>
             </ul>
         </div>
     </nav>

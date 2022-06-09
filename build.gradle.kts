@@ -10,8 +10,7 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.allopen") version "1.5.20"
-	kotlin("plugin.jpa") version "1.5.20"
-	kotlin("plugin.noarg") version "1.5.20"
+	jacoco
 }
 
 group = "com.andymcg"
@@ -23,45 +22,48 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.apache.commons:commons-lang3")
-	implementation("org.flywaydb:flyway-core")
-	implementation("org.flywaydb:flyway-mysql")
 
-	runtimeOnly("mysql:mysql-connector-java")
-	runtimeOnly("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3")
+	implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3")
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5")
+
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.zonky.test:embedded-database-spring-test:1.6.3")
+//	testImplementation("io.zonky.test:embedded-database-spring-test:1.6.3")
 	testImplementation("org.fluentlenium:fluentlenium-junit-jupiter:5.0.1")
 	testImplementation("org.fluentlenium:fluentlenium-assertj:5.0.1")
 	testImplementation("com.thedeanda:lorem:2.1")
-	testImplementation("org.testcontainers:mysql:1.16.2")
+//	testImplementation("org.testcontainers:mysql:1.16.2")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 	testImplementation("io.rest-assured:spring-mock-mvc:4.3.3")
-	testImplementation("com.playtika.testcontainers:embedded-redis:2.0.9")
-	testImplementation("org.testcontainers:junit-jupiter:1.16.2")
+//	testImplementation("com.playtika.testcontainers:embedded-redis:2.0.9")
+//	testImplementation("org.testcontainers:junit-jupiter:1.16.2")
 }
 
-allOpen {
-	annotation("javax.persistence.Entity")
-	annotation("javax.persistence.MappedSuperclass")
-	annotation("javax.persistence.Embeddable")
-}
-
-noArg {
-	annotation("javax.persistence.Entity")
-	annotation("javax.persistence.MappedSuperclass")
-	annotation("javax.persistence.Embeddable")
-}
+//allOpen {
+//	annotation("javax.persistence.Entity")
+//	annotation("javax.persistence.MappedSuperclass")
+//	annotation("javax.persistence.Embeddable")
+//}
+//
+//noArg {
+//	annotation("javax.persistence.Entity")
+//	annotation("javax.persistence.MappedSuperclass")
+//	annotation("javax.persistence.Embeddable")
+//}
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {

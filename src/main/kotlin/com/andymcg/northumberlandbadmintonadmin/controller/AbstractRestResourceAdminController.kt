@@ -1,5 +1,6 @@
-package com.andymcg.northumberlandbadmintonadmin
+package com.andymcg.northumberlandbadmintonadmin.controller
 
+import com.andymcg.northumberlandbadmintonadmin.client.AbstractClient
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.validation.Errors
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,22 +12,21 @@ annotation class AllOpen
 
 @AllOpen
 open class AbstractRestResourceController<
-    T : AbstractJpaEntity,
-    FORM : ResourceForm<T>,
-    FAC : ResourceFormFactory<T, FORM>,
-    REPO : AbstractJpaRepository<T>>(val repo: REPO, val fac: FAC, val rel: String) {
+    RES,
+    FORM : ResourceForm<RES>,
+    FAC : ResourceFormFactory<RES, FORM>,
+    CLIENT : AbstractClient<RES>>(val client: CLIENT, val fac: FAC, val rel: String) {
 
     val listPageView = rel
-    val listPageRedirectView = "redirect:${Uris.root}/$rel"
+    val listPageRedirectView = "redirect:${com.andymcg.northumberlandbadmintonadmin.Uris.root}/$rel"
     val createView = "$rel.new"
     val editView = "$rel.edit"
 
-    open fun doFindAll(): List<T> =
-        repo.findAll()
+    open fun doFindAll(): List<RES> = client.findAll()
 
     open fun beforeCreateResource(form: FORM): FORM = form
 
-    open fun beforeUpdateResource(form: FORM, resource: T): FORM = form
+    open fun beforeUpdateResource(form: FORM, resource: RES): FORM = form
 
     @GetMapping
     fun displayList(model: MutableMap<String, Any>): String {
@@ -47,13 +47,13 @@ open class AbstractRestResourceController<
             return createView
         }
         val resource = beforeCreateResource(form).toNewResource()
-        repo.save(resource)
+        client.post(resource)
         return listPageRedirectView
     }
 
     @GetMapping("/{id}")
     fun displayEdit(@PathVariable("id") id: Long, model: MutableMap<String, Any>): String {
-        repo.findByIdOrNull(id)?.let {
+        client.findById(id)?.let {
             model["resource"] = it
             model["form"] = fac.editForm(it)
             return editView
@@ -71,16 +71,16 @@ open class AbstractRestResourceController<
             model["form"] = form
             return editView
         }
-        repo.findByIdOrNull(id)?.let {
+        client.findById(id)?.let {
             val updated = beforeUpdateResource(form, it).updatedCopy(it)
-            repo.save(updated)
+            client.put(updated, id)
             return listPageRedirectView
         } ?: throw IllegalArgumentException()
     }
 
     @PostMapping("/{id}/delete")
     fun handleDelete(@PathVariable("id") id: Long): String {
-        repo.deleteById(id)
+        client.delete(id)
         return listPageRedirectView
     }
 }

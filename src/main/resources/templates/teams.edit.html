@@ -14,7 +14,7 @@
         <div class="masonry row">
             <div class="col s12">
                 <h2 class="title">Edit team</h2>
-                <form th:action="${(#mvc.url('TC#handleEdit').arg(0, resource.id).build())}" th:method="post" th:object="${form}" class="team">
+                <form th:action="${(#mvc.url('TAC#handleEdit').arg(0, resource.id).build())}" th:method="post" th:object="${form}" class="team">
                     <div>
                         <input th:type="hidden" th:field="*{id}">
                     </div>

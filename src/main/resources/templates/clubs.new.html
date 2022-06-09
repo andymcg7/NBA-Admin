@@ -13,7 +13,7 @@
         <div class="masonry row">
             <div class="col s12">
                 <h2 class="title">Create club</h2>
-                <form th:action="${(#mvc.url('CC#handleCreate').build())}" th:method="post" th:object="${form}" class="club">
+                <form th:action="${(#mvc.url('CAC#handleCreate').build())}" th:method="post" th:object="${form}" class="club">
                     <div th:replace="fragments/club-form :: club-form"></div>
                     <div th:replace="fragments/submit-button :: submit-button"></div>
                 </form>
