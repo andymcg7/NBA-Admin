@@ -11,7 +11,7 @@ fun extractClubId(resource: ClubResource): Long? = resource.id
 fun setClubId(resource: ClubResource, id: Long): ClubResource = resource.copy(id = id)
 
 @RestController
-@RequestMapping("/stubs/nba-service/api/v1/clubs")
+@RequestMapping("/stubs/nba-service/api/v1/clubs.php")
 @Profile("functional-spec", "api-spec", "local")
 class ClubRestServiceStub(repository: ClubRestServiceStubService) :
 AbstractJpaRestServiceStub<ClubResource, ClubRestServiceStubService>(
