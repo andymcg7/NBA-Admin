@@ -14,11 +14,11 @@
 
     <div class="row">
         <label>
-            <input th:type="radio" th:field="*{gender}" th:value="MALE" class="filled-in">
+            <input th:type="radio" th:field="*{gender}" th:value="Male" class="filled-in">
             <span>Male</span>
         </label>
         <label>
-            <input th:type="radio" th:field="*{gender}" th:value="FEMALE" class="filled-in">
+            <input th:type="radio" th:field="*{gender}" th:value="Female" class="filled-in">
             <span>Female</span>
         </label>
         <ul th:if="${#fields.hasErrors('gender')}" class="field-errors">

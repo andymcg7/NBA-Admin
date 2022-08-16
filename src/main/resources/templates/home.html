@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout.html}">
+<!--/*thymesVar id="resources" type=java.util.List<com.andymcg.northumberlandbadmintonadmin.client.ClubResource>"*/-->
+<head>
+    <title>Northumberland Badminton Admin Application</title>
+</head>
+<body>
+<div layout:fragment="main">
+   <main>
+       <nav class="nba-blue">
+           <div class="nav-wrapper">
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                   <li><a th:href="${#mvc.url('CAC#displayList').build()}">Clubs</a></li>
+                   <li><a th:href="${#mvc.url('TAC#displayList').build()}">Teams</a></li>
+                   <li><a th:href="${#mvc.url('PAC#displayList').build()}">Players</a></li>
+               </ul>
+           </div>
+       </nav>
+       <div>Welcome to the new NBA Admin App. This is very new so there may be teething problems....</div>
+    </main>
+</div>
+</body>
+</html>

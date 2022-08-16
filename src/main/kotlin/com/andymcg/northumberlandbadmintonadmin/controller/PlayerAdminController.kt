@@ -36,7 +36,7 @@ class PlayerResourceForm() : ResourceForm<PlayerResource> {
     @get:NotBlank
     var name: String? = null
 
-    var gender: Gender = Gender.MALE
+    var gender: Gender = Gender.Male
 
     var primaryClub: ClubResource? = null
 
