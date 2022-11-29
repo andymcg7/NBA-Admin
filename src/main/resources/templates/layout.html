@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link th:href="@{/resources/css/admin.css}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+<!--    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">-->
 </head>
 <body class="admin-layout">
     <div layout:fragment="main"></div>
@@ -22,6 +23,7 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+<!--    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js" type="text/javascript"></script>-->
     <script type="application/javascript">
         $(document).ready(function() {
             $('select').formSelect();
@@ -30,7 +32,7 @@
                 accordion: false
             });
             const dataTable = new simpleDatatables.DataTable("#mainTable", {
-                searchable: false,
+                searchable: true,
                 fixedHeight: true
             });
         });

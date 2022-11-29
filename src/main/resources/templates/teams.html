@@ -18,14 +18,14 @@
                    <p>There are no teams currently configured</p>
                </div>
                <div th:unless="${resources.empty}">
-                   <table class="highlight">
+                   <table class="table table-bordered table-responsive" id="mainTable">
                        <thead>
                        <tr>
                            <th>Name</th>
                            <th>Type</th>
                            <th>Division</th>
                            <th>Club</th>
-                           <th>Abbreviation</th>
+                           <th>Contact</th>
                            <th></th>
                            <th></th>
                        </tr>
@@ -36,7 +36,7 @@
                            <td th:text="${team.type}"></td>
                            <td th:text="${team.division}"></td>
                            <td th:text="${team.club.name}"></td>
-                           <td th:text="${team.abbreviation}"></td>
+                           <td th:text="${team.contact}"></td>
                            <td>
                                <a th:href="${#mvc.url('TAC#displayEdit').arg(0, team.id).build()}" class="edit-button">
                                    <i class="material-icons green-text">edit</i>
@@ -63,5 +63,32 @@
        </div>
     </main>
 </div>
+<script>
+    $('#teams-table').DataTable({
+        "processing": true,
+        "serverSide": false,
+        "columns": [
+            {"data": "teamName", "width": "20%"},
+            {"data": "type","width": "20%"},
+            {"data": "division", "width": "20%"},
+            {"data": "club", "width": "20%"},
+            {"data": "contact", "width": "20%"}
+        ]
+    });
+
+<!--    $('#exampleArray').DataTable({-->
+<!--        "processing": true,-->
+<!--        "serverSide": true,-->
+<!--        "ajax": {-->
+<!--            "url": "/employees/array",-->
+<!--            "type": "POST",-->
+<!--            "dataType": "json",-->
+<!--            "contentType": "application/json",-->
+<!--            "data": function (d) {-->
+<!--                return JSON.stringify(d);-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+</script>
 </body>
 </html>
