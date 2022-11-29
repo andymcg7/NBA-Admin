@@ -42,28 +42,12 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-//	testImplementation("io.zonky.test:embedded-database-spring-test:1.6.3")
 	testImplementation("org.fluentlenium:fluentlenium-junit-jupiter:5.0.1")
 	testImplementation("org.fluentlenium:fluentlenium-assertj:5.0.1")
 	testImplementation("com.thedeanda:lorem:2.1")
-//	testImplementation("org.testcontainers:mysql:1.16.2")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 	testImplementation("io.rest-assured:spring-mock-mvc:4.3.3")
-//	testImplementation("com.playtika.testcontainers:embedded-redis:2.0.9")
-//	testImplementation("org.testcontainers:junit-jupiter:1.16.2")
 }
-
-//allOpen {
-//	annotation("javax.persistence.Entity")
-//	annotation("javax.persistence.MappedSuperclass")
-//	annotation("javax.persistence.Embeddable")
-//}
-//
-//noArg {
-//	annotation("javax.persistence.Entity")
-//	annotation("javax.persistence.MappedSuperclass")
-//	annotation("javax.persistence.Embeddable")
-//}
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
