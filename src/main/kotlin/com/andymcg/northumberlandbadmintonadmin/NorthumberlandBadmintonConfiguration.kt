@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration
 @ConstructorBinding
 @ConfigurationProperties("nba", ignoreInvalidFields = true)
 data class NorthumberlandBadmintonConfiguration(
-    val serviceUrl: String
+    val serviceUrl: String,
+    val apiKey: String
 )
 
 @Configuration

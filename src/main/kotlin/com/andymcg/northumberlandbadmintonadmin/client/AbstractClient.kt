@@ -9,7 +9,6 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.web.client.RestTemplate
-import java.lang.IllegalStateException
 
 abstract class AbstractClient<T>(
     private val config: NorthumberlandBadmintonConfiguration,
@@ -22,6 +21,7 @@ abstract class AbstractClient<T>(
         restTemplateBuilder
             .rootUri("${config.serviceUrl}/api/v1")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .defaultHeader("x-api-key", config.apiKey)
             .additionalMessageConverters(MappingJackson2HttpMessageConverter())
             .build()
     }

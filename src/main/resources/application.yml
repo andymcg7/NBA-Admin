@@ -35,6 +35,7 @@ management:
         include: health, info, beans, conditions, configprops, env, loggers, metrics, mappings, sessions
 nba:
   service-url: http://localhost:8080/stubs/nba-service
+  api-key: blah
 
 ---
 
@@ -54,6 +55,7 @@ management:
         include: health, info, beans, conditions, configprops, env, loggers, metrics, mappings, sessions
 nba:
   service-url: http://www.northumberlandbadminton.org/nba-service/
+  api-key: blahblah
 ---
 
 spring:
@@ -74,6 +76,8 @@ management:
         include: info
 nba:
   service-url: http://localhost:36543/stubs/nba-service
+  api-key: blahblahblah
+
 ---
 
 spring:
@@ -94,3 +98,4 @@ management:
         include: info
 nba:
   service-url: http://localhost:36543/stubs/nba-service
+  api-key: wibble
