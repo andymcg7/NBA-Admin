@@ -2,12 +2,13 @@
 
 ## This is still very rough WIP
 
-### The current Northumberland Badminton Admin Application is a legacy Apache Flex application which isn't great in 2022. This project is intended to replace that application. This is a Spring Boot/Kotlin/Thymeleaf application connecting to a basic rest service hosted on the Northumberland Badminton site, and uses some ideas and techniques I have been looking at recently.
+### The current Northumberland Badminton Admin Application is a legacy Apache Flex application which isn't great in 2022. This project is intended to replace that application. This is a Spring Boot/Kotlin/Thymeleaf application built using Gradle connecting to a basic rest service hosted on the Northumberland Badminton site, and uses some ideas and techniques I have been looking at recently.
 
 
 ## Pre-requisites
 
 ### JDK >= 11
+### Chromedriver
 
 ## Development Focus
 

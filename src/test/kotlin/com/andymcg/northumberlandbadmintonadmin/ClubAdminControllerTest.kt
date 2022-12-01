@@ -7,7 +7,7 @@ import com.andymcg.northumberlandbadmintonadmin.page.ClubListPage
 import com.andymcg.northumberlandbadmintonadmin.stub.ClubRestServiceStubService
 import org.springframework.beans.factory.annotation.Autowired
 
-class ClubAdminControllerSpec
+class ClubAdminControllerTest
 @Autowired constructor(stub: ClubRestServiceStubService) :
     AbstractResourceAdminControllerSpec<
     ClubResource, ClubListPage, ClubCreatePage, ClubEditPage>(
