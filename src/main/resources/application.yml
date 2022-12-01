@@ -14,8 +14,6 @@ management:
 spring:
   thymeleaf:
     render-hidden-markers-before-checkboxes: true
-nba:
-  service-url: http://www.northumberlandbadminton.org/nba-service/
 
 ---
 
@@ -37,25 +35,6 @@ nba:
   service-url: http://localhost:8080/stubs/nba-service
   api-key: blah
 
----
-
-spring:
-  config:
-    activate:
-      on-profile: nba_site
-  security:
-    user:
-      name: user
-      password: password
-management:
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: health, info, beans, conditions, configprops, env, loggers, metrics, mappings, sessions
-nba:
-  service-url: http://www.northumberlandbadminton.org/nba-service/
-  api-key: blahblah
 ---
 
 spring:
