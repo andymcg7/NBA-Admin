@@ -13,12 +13,13 @@
        <nav class="nba-blue">
            <div class="nav-wrapper">
                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                   <li><a th:href="${#mvc.url('CAC#displayList').build()}">Clubs</a></li>
-                   <li><a th:href="${#mvc.url('TAC#displayList').build()}">Teams</a></li>
-                   <li><a th:href="${#mvc.url('PAC#displayList').build()}">Players</a></li>
+                   <li data-resource="clubs"><a th:href="${#mvc.url('CAC#displayList').build()}">Clubs</a></li>
+                   <li><a data-resource="teams" th:href="${#mvc.url('TAC#displayList').build()}">Teams</a></li>
+                   <li><a data-resource="players" th:href="${#mvc.url('PAC#displayList').build()}">Players</a></li>
                </ul>
            </div>
        </nav>
+       <h2>Main dashboard</h2>
        <div>Welcome to the new NBA Admin App. This is very new so there may be teething problems....</div>
     </main>
 </div>

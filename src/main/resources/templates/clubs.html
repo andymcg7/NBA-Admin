@@ -30,8 +30,8 @@
                        </thead>
                        <tbody>
                        <tr th:each="club : ${resources}" class="club resource" th:id="${club.id}">
-                           <td th:text="${club.name}"></td>
-                           <td th:text="${club.venue}"></td>
+                           <td th:text="${club.name}" class="name"></td>
+                           <td th:text="${club.venue}" class="venue"></td>
                            <td>
                                <a th:href="${#mvc.url('CAC#displayEdit').arg(0, club.id).build()}" class="edit-button">
                                    <i class="material-icons green-text">edit</i>

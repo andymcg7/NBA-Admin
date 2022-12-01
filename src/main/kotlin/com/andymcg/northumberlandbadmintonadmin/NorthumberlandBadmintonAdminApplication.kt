@@ -74,6 +74,7 @@ class NorthumberlandBadmintonAdminApplication : WebSecurityConfigurerAdapter() {
 
 object Uris {
 	const val root = ""
+	const val dashboard = "$root/"
 }
 
 

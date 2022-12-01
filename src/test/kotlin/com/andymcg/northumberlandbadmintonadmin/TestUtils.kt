@@ -26,6 +26,8 @@ object TestUtils {
 
     fun randomEmail(): String = lorem.email
 
+    fun randomWords(count: Int) = lorem.getWords(count)
+
     fun generateRandomClubResource(): ClubResource =
         ClubResource(
             name = randomAlphabetic(20),

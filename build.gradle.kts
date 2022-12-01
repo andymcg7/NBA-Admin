@@ -10,8 +10,8 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.allopen") version "1.5.20"
-	jacoco
 }
+
 
 group = "com.andymcg"
 version = "0.0.1-SNAPSHOT"
@@ -42,11 +42,14 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.fluentlenium:fluentlenium-junit-jupiter:5.0.1")
-	testImplementation("org.fluentlenium:fluentlenium-assertj:5.0.1")
+	testImplementation("org.fluentlenium:fluentlenium-junit-jupiter:5.0.4")
+	testImplementation("org.fluentlenium:fluentlenium-assertj:5.0.4")
 	testImplementation("com.thedeanda:lorem:2.1")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 	testImplementation("io.rest-assured:spring-mock-mvc:4.3.3")
+	testImplementation("net.sourceforge.htmlunit:htmlunit:2.38.0")
+	testImplementation("org.seleniumhq.selenium:selenium-chrome-driver:4.6.0")
+
 }
 
 tasks.withType<KotlinCompile> {
