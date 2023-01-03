@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PlayerClient(config: NorthumberlandBadmintonConfiguration, restTemplateBuilder: RestTemplateBuilder) : AbstractClient<PlayerResource>(
-    config, restTemplateBuilder, PlayerResource::class.java, "players.php"
+    config, restTemplateBuilder, PlayerResource::class.java, config.playerRel
 ) {
 
     private val listResponseType = object : ParameterizedTypeReference<List<PlayerResource>>() {}

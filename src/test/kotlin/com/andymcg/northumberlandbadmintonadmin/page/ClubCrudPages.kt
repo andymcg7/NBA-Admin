@@ -20,9 +20,9 @@ fun ClubResource.toListedClub(): ListedClub =
 
 class ListedClubComponent(
     el: WebElement,
-    ctrl: FluentControl,
+    control: FluentControl,
     instantiatior: ComponentInstantiator
-) : FluentWebElement(el, ctrl, instantiatior) {
+) : FluentWebElement(el, control, instantiatior) {
 
     @FindBy(css = ".name") lateinit var name: FluentWebElement
 

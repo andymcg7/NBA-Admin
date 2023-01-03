@@ -18,9 +18,9 @@ fun ClubResource.toEditedClubResource(): EditedClubResource =
 
 class ClubFormComponent(
     el: WebElement,
-    ctrl: FluentControl,
+    control: FluentControl,
     instantiator: ComponentInstantiator
-) : FluentWebElement(el, ctrl, instantiator) {
+) : FluentWebElement(el, control, instantiator) {
 
     @FindBy(name = "id") lateinit var id: FluentWebElement
     @FindBy(name = "name") lateinit var name: FluentWebElement

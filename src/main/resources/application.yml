@@ -34,6 +34,9 @@ management:
 nba:
   service-url: http://localhost:8080/stubs/nba-service
   api-key: blah
+  club-rel: clubs
+  team-rel: teams
+  player-rel: players
 
 ---
 
@@ -56,6 +59,9 @@ management:
 nba:
   service-url: http://localhost:36543/stubs/nba-service
   api-key: blahblahblah
+  club-rel: clubs
+  team-rel: teams
+  player-rel: players
 
 ---
 
@@ -68,7 +74,7 @@ spring:
       name: user
       password: password
 server:
-  port: 36543
+  port: 36544
 management:
   endpoints:
     enabled-by-default: true
@@ -76,5 +82,8 @@ management:
       exposure:
         include: info
 nba:
-  service-url: http://localhost:36543/stubs/nba-service
+  service-url: http://localhost:36544/stubs/nba-service
   api-key: wibble
+  club-rel: clubs
+  team-rel: teams
+  player-rel: players

@@ -11,7 +11,7 @@ fun extractTeamId(resource: TeamResource): Long? = resource.id
 fun setTeamId(resource: TeamResource, id: Long): TeamResource = resource.copy(id = id)
 
 @RestController
-@RequestMapping("/stubs/nba-service/api/v1/teams.php")
+@RequestMapping("/stubs/nba-service/api/v1/teams")
 @Profile("functional-spec", "api-spec", "local")
 class TeamRestServiceStub(repository: TeamRestServiceStubService) :
 AbstractJpaRestServiceStub<TeamResource, TeamRestServiceStubService>(

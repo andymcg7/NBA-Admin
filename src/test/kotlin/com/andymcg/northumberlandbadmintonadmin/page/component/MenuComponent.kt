@@ -9,9 +9,9 @@ import org.openqa.selenium.support.FindBy
 
 class MenuComponent(
     el: WebElement,
-    ctrl: FluentControl,
+    control: FluentControl,
     instantiator: ComponentInstantiator
-) {
+) : FluentWebElement(el, control, instantiator) {
 
     @FindBy(css = "li")
     lateinit var items: FluentList<MenuItemComponent>
@@ -25,9 +25,9 @@ class MenuComponent(
 
 class MenuItemComponent(
     el: WebElement,
-    ctrl: FluentControl,
+    control: FluentControl,
     instantiator: ComponentInstantiator
-) : FluentWebElement(el, ctrl, instantiator) {
+) : FluentWebElement(el, control, instantiator) {
 
     fun toggle() {
         val active = isActive()

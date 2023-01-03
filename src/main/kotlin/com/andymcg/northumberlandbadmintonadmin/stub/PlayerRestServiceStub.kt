@@ -11,7 +11,7 @@ fun extractPlayerId(resource: PlayerResource): Long? = resource.id
 fun setPlayerId(resource: PlayerResource, id: Long): PlayerResource = resource.copy(id = id)
 
 @RestController
-@RequestMapping("/stubs/nba-service/api/v1/players.php")
+@RequestMapping("/stubs/nba-service/api/v1/players")
 @Profile("functional-spec", "api-spec", "local")
 class PlayerRestServiceStub(repository: PlayerRestServiceStubService) :
     AbstractJpaRestServiceStub<PlayerResource, PlayerRestServiceStubService>(

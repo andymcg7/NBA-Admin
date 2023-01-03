@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy
 
 class LoginFormComponent(
     el: WebElement,
-    ctrl: FluentControl,
+    control: FluentControl,
     instantiator: ComponentInstantiator
-) : FluentWebElement(el, ctrl, instantiator) {
+) : FluentWebElement(el, control, instantiator) {
 
     @FindBy(name = "username") private lateinit var usernameInput: FluentWebElement
     @FindBy(name = "password") private lateinit var passwordInput: FluentWebElement

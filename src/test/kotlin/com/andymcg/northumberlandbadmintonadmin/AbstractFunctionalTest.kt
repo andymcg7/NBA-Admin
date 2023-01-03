@@ -6,16 +6,12 @@ import org.fluentlenium.configuration.ConfigurationProperties
 import org.fluentlenium.configuration.FluentConfiguration
 import org.fluentlenium.core.annotation.Page
 import org.junit.jupiter.api.BeforeEach
-import org.openqa.selenium.WebDriver
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.support.GenericApplicationContext
-import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
-import org.openqa.selenium.chrome.ChromeDriver
-import java.util.concurrent.TimeUnit
 
 private const val FLUENT_CAPABILITIES =
     """
@@ -39,7 +35,7 @@ private const val FLUENT_CAPABILITIES =
     screenshotMode = ConfigurationProperties.TriggerMode.AUTOMATIC_ON_FAIL,
     screenshotPath = "build/reports/tests/test/screenshots"
 )
-@DirtiesContext
+//@DirtiesContext
 abstract class AbstractFunctionalSpec : FluentTest() {
 
     @Page lateinit var dashboard: DashboardPage
@@ -62,13 +58,6 @@ abstract class AbstractFunctionalSpec : FluentTest() {
     fun baseSetup() {
         System.setProperty("webdriver.chrome.driver", "C://windows//chromedriver.exe")
     }
-
-//    override fun getWebDriver(): String {
-//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe")
-//        val driver: WebDriver = ChromeDriver()
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
-//        return "chrome"
-//    }
 
     override fun getBaseUrl(): String {
         return "http://localhost:$port"

@@ -1,32 +1,30 @@
 package com.andymcg.northumberlandbadmintonadmin.controller
 
 import com.andymcg.northumberlandbadmintonadmin.client.AbstractClient
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.validation.Errors
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
-import java.lang.IllegalArgumentException
 
 annotation class AllOpen
 
 @AllOpen
 open class AbstractRestResourceController<
-    RES,
-    FORM : ResourceForm<RES>,
-    FAC : ResourceFormFactory<RES, FORM>,
-    CLIENT : AbstractClient<RES>>(val client: CLIENT, val fac: FAC, val rel: String) {
+    RESOURCE,
+    FORM : ResourceForm<RESOURCE>,
+    FACTORY : ResourceFormFactory<RESOURCE, FORM>,
+    CLIENT : AbstractClient<RESOURCE>>(val client: CLIENT, private val fac: FACTORY, rel: String) {
 
     val listPageView = rel
     val listPageRedirectView = "redirect:${com.andymcg.northumberlandbadmintonadmin.Uris.root}/$rel"
     val createView = "$rel.new"
     val editView = "$rel.edit"
 
-    open fun doFindAll(): List<RES> = client.findAll()
+    open fun doFindAll(): List<RESOURCE> = client.findAll()
 
     open fun beforeCreateResource(form: FORM): FORM = form
 
-    open fun beforeUpdateResource(form: FORM, resource: RES): FORM = form
+    open fun beforeUpdateResource(form: FORM, resource: RESOURCE): FORM = form
 
     @GetMapping
     fun displayList(model: MutableMap<String, Any>): String {

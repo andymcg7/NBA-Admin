@@ -11,7 +11,10 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties("nba", ignoreInvalidFields = true)
 data class NorthumberlandBadmintonConfiguration(
     val serviceUrl: String,
-    val apiKey: String
+    val apiKey: String,
+    val clubRel: String,
+    val teamRel: String,
+    val playerRel: String
 )
 
 @Configuration
